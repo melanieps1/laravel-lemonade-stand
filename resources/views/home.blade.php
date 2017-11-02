@@ -14,7 +14,26 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <h2>My games</h2>
+                        <p><a href="#">New Game!</a></p>
+                        <ul>
+                            <li>
+                                <button class="btn btn-sm btn-outline-secondary" type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                <a href="#">Game 1</a> - Day 8, $24.87
+                            </li>
+                            <li>
+                                <button class="btn btn-sm btn-outline-secondary" type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                <a href="#">Game 2</a> - Ended, $34.33
+                            </li>
+                        </ul>
+
+                    <h2>Leader Board</h2>
+                        <ul>
+                            <li>Heath - $25,000</li>
+                            <li>Mario - $12,000</li>
+                            <li>Luigi - $8,000</li>
+                        </ul>
+
                 </div>
             </div>
         </div>
