@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $games = \App\Game::where('user_id', \Auth::user()->id)->get();
+        return view('home', compact('games'));
     }
 }

@@ -24,7 +24,16 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+        // create a new game
+        $game = new \App\Game;
+        $game->user_id = \Auth::user()->id;
+        $game->save();
+
+        // create day 1 conditions for new game
+
+        // puts the user back on their home page (temporarily)
+        // TODO: Redirect user to day 1 page
+        return redirect()->route('home');
     }
 
     /**
@@ -46,7 +55,8 @@ class GameController extends Controller
      */
     public function show($id)
     {
-        //
+        $game = \App\Game::find($id);
+        return $game;
     }
 
     /**
