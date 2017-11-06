@@ -23,11 +23,25 @@
         </li>
     </ul> -->
 
-    @foreach ($games as $game)
+<h3>Active Games</h3>
+    
+    <ul>
+        @foreach ($active_games as $game)
 
-        <li><a href="/games/{{ $game->id }}">Game {{ $game->id }}</a></li>
+            <li><a href="/games/{{ $game->id }}">Game {{ $game->id }}</a></li>
 
-    @endforeach
+        @endforeach
+    </ul>
+
+<h3>Finished Games</h3>
+    
+    <ul>
+        @foreach ($finished_games as $game)
+
+            <li>Game {{ $game->id }}</li>
+
+        @endforeach
+    </ul>
 
 <h2>Leader Board</h2>
     <ul>
