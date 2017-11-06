@@ -29,11 +29,18 @@ class GameController extends Controller
         $game->user_id = \Auth::user()->id;
         $game->save();
 
-        // create day 1 conditions for new game
+        // create day 1 and conditions for new game
+        $day = new \App\Day;
+        // $conditions = new \App\Condition;
+        $day->game_id = $game->id;
+        $day->day = 1;
+        $day->condition_id = 3; // TODO: Not hard code this
+        $day->temperature = 90; // TODO: Not hard code this
+        $day->save();
 
         // puts the user back on their home page (temporarily)
         // TODO: Redirect user to day 1 page
-        return redirect()->route('home');
+        return redirect()->route('home', compact('game', 'day'));
     }
 
     /**
@@ -56,7 +63,10 @@ class GameController extends Controller
     public function show($id)
     {
         $game = \App\Game::find($id);
-        return $game;
+        $day = new \App\Day;
+        $day = \App\Day::where('game_id', $id)->orderBy('id')->first();
+        // var_dump($day);
+        return view('games.index', compact('game', 'day'));
     }
 
     /**
