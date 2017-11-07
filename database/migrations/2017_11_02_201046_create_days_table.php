@@ -16,7 +16,7 @@ class CreateDaysTable extends Migration
         Schema::create('days', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('game_id')->unsigned();
-            $table->foreign('game_id')->references('id')->on('games');
+            $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
             $table->integer('day');
             $table->integer('condition_id')->unsigned();
             $table->foreign('condition_id')->references('id')->on('conditions');

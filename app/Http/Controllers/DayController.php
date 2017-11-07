@@ -24,11 +24,13 @@
 	   public function create(Request $request)
 	   {
 	       $yesterday = \App\Day::find($request->input('yesterday'));
+	       // 'yesterday' was a hidden field created in the edit.blade.php view
 	       $game = $yesterday->game()->first();
 
 	       // Is there time left in the game?
 	       if ($yesterday->day < $game->last_day) {
-	           // Yes - make a new day
+
+	           // Make a new day
 	           $day = new \App\Day;
 	           $day->day = $yesterday->day + 1;
 	           $day->game_id = $game->id;
@@ -36,9 +38,8 @@
 	           $day->temperature = 75;
 	           $day->save();
 	           return redirect('/days/' . $day->id);
-	       }
-	       else {
-	           // No - close this game
+	       } else {
+	           // Mark game as finished
 	           $game->is_done = true;
 	           $game->save();
 	       }
