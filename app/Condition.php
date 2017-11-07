@@ -12,6 +12,12 @@ class Condition extends Model
 	}
 
 	public static function randomCondition() {
-		return 2;
+		$condition = \App\Condition::find(2);
+		return $condition;
+	}
+
+	public function randomTemperature() {
+		$base = $this->base_temperature;
+		return $base + 2;
 	}
 }

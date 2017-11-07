@@ -42,8 +42,9 @@
 	          $day = new \App\Day;
 	          $day->day = $yesterday + 1;
 	          $day->game_id = $game->id;
-	          $day->condition_id = \App\Condition::randomCondition();
-	          $day->temperature = $day->condition->base_temperature;
+	          $condition = \App\Condition::randomCondition();
+	          $day->condition_id = $condition->id;
+	          $day->temperature = $condition->randomTemperature();
 	          $day->save();
 	          return redirect('/days/' . $day->id);
 	      } else {
