@@ -30,10 +30,14 @@ class GameController extends Controller
         $game->save();
 
         // create day 1 conditions for new game
+        $day = new \App\Day;
+        $day->day = 1;
+        $day->game_id = $game->id;
+        $day->condition_id = 3;
+        $day->temperature = 75;
+        $day->save();
 
-        // puts the user back on their home page (temporarily)
-        // TODO: Redirect user to day 1 page
-        return redirect()->route('home');
+        return redirect('/days/' . $day->id);
     }
 
     /**
@@ -56,7 +60,13 @@ class GameController extends Controller
     public function show($id)
     {
         $game = \App\Game::find($id);
-        return $game;
+
+        if ($game->is_done) {
+            return view('games.show', compact('game'));
+        } else {
+            $day = $game->current_day();
+            return view('days.edit', compact('game', 'day'));
+        }
     }
 
     /**

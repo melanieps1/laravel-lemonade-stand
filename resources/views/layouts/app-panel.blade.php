@@ -38,7 +38,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="{{ route('home') }}">Home</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -77,7 +77,11 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">
+
+@yield('title')                    
+
+                </div>
 
                 <div class="panel-body">
                     @if (session('status'))
