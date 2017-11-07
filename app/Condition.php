@@ -10,4 +10,8 @@ class Condition extends Model
 	public function days() {
 		return $this->hasMany('App\Day');
 	}
+
+	public static function randomCondition() {
+		return 2;
+	}
 }

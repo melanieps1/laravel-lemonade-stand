@@ -23,26 +23,34 @@
 	    */
 	   public function create(Request $request)
 	   {
-	       $yesterday = \App\Day::find($request->input('yesterday'));
-	       // 'yesterday' was a hidden field created in the edit.blade.php view
-	       $game = $yesterday->game()->first();
 
-	       // Is there time left in the game?
-	       if ($yesterday->day < $game->last_day) {
+	   		$game = \App\Game::find($request->session()->get('game_id'));
 
-	           // Make a new day
-	           $day = new \App\Day;
-	           $day->day = $yesterday->day + 1;
-	           $day->game_id = $game->id;
-	           $day->condition_id = 3;
-	           $day->temperature = 75;
-	           $day->save();
-	           return redirect('/days/' . $day->id);
-	       } else {
-	           // Mark game as finished
-	           $game->is_done = true;
-	           $game->save();
-	       }
+	      // $yesterday = \App\Day::find($request->input('yesterday'));
+	      // 'yesterday' was a hidden field created in the edit.blade.php view
+	      // $game = $yesterday->game()->first();
+
+	      if ($request->input('yesterday')) {
+	      	$yesterday = $request->input('yesterday');
+	      } else {
+	      	$yesterday = 0;
+	      }
+
+	      // Is there time left in the game?
+	      if ($yesterday < $game->last_day) {
+	          // Make a new day
+	          $day = new \App\Day;
+	          $day->day = $yesterday + 1;
+	          $day->game_id = $game->id;
+	          $day->condition_id = \App\Condition::randomCondition();
+	          $day->temperature = $day->condition->base_temperature;
+	          $day->save();
+	          return redirect('/days/' . $day->id);
+	      } else {
+	          // Mark game as finished
+	          $game->is_done = true;
+	          $game->save();
+	      }
 
 	       return redirect('/home');
 

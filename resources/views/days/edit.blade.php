@@ -10,7 +10,7 @@
 <form method="get" action="/days/create">
   <p><strong>Condition:</strong> {{ $day->condition->name }}</p>
   <p><strong>Temperature:</strong> {{ $day->temperature }}</p>
-  <input type="hidden" name="yesterday" value="{{ $day->id }}">
+  <input type="hidden" name="yesterday" value="{{ $day->day }}">
   <button class="btn btn-sm btn-default" type="submit">New Day</button>
 </form>
 
