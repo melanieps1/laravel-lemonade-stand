@@ -62,15 +62,17 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $game = \App\Game::find($id);
 
         if ($game->is_done) {
             return view('games.show', compact('game'));
         } else {
-            $day = $game->current_day();
-            return view('days.edit', compact('game', 'day'));
+            // TODO: this code is partially duplicated in DayController@create
+            // Is there a way to remove the redundancy?
+            $request->session()->put('game_id', $game->id);
+            return redirect('/days/' . $game->current_day()->id);
         }
     }
 

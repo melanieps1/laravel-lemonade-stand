@@ -28,13 +28,19 @@ A version of the classic video game coded in Laravel.
 8. Resources:
   * Lemons
     - Carries over to the next day
+    - Makes 1 serving
+    - Cost $0.10
+    - Sold individually
   * Sugar
     - Carries over to the next day
     - Sold as 4-lb (8-cup) bag
     - Costs: $2.00
     - Makes 16 cups
-  * Cups
+  * Paper Cups
     - Carries over to the next day
+    - Sold in packs of 20
+    - Cost $1.00
+    - Makes 20 servings
   * Ice
     - Expires at the end of every day
     - Sold as 1-lb bag
@@ -42,8 +48,10 @@ A version of the classic video game coded in Laravel.
     - Makes 10 cups
   * Signs
     - Expire at the end of every day
+    - Cost $0.25
+    - Made individually
 
-9. Starting money: $20.00
+9. Starting money: $5.00
 
 10. Weather forecasts are given as conditions and temperature.
 

@@ -30,10 +30,9 @@
 	      // 'yesterday' was a hidden field created in the edit.blade.php view
 	      // $game = $yesterday->game()->first();
 
+	   		$yesterday = 0;
 	      if ($request->input('yesterday')) {
 	      	$yesterday = $request->input('yesterday');
-	      } else {
-	      	$yesterday = 0;
 	      }
 
 	      // Is there time left in the game?
@@ -77,7 +76,10 @@
 	   public function show($id)
 	   {
 	       $day = \App\Day::find($id);
-	       return view('days.edit', compact('day'));
+	       $resources = \DB::table('resources')
+                			->orderBy('name', 'asc')
+                			->get();
+        return view('days.edit', compact('day', 'resources'));
 	   }
 
 	   /**
